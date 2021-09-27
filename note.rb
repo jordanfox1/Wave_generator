@@ -27,10 +27,12 @@ def note
     bflat: 466.16,
     b: 493.88,
   }
-  # Read the command-line arguments.
-  waveform = :sine
+  
+  puts 'what is your waveform?'
+  waveform = gets.chomp.to_sym
 
-  frequency = ARGV[0].to_sym
+  puts 'what is your note?'
+  frequency = gets.chomp.to_sym
 
   notes.each do |k, _v|
     if frequency == k
@@ -38,27 +40,20 @@ def note
     end
   end
 
-  duration = ARGV[1].to_i
+  puts 'how many seconds should your note play for?'
+  duration = gets.chomp.to_f
 
-  amplitude = ARGV[2].to_f   # Should be between 0.0 (silence) and 1.0 (full volume).
-                             # Amplitudes above 1.0 will result in clipping distortion.
-
-  # Generate sample data at the given frequency and amplitude.
-  # The sample rate indicates how many samples we need to generate for
-  # 1 second of sound.
+  amplitude = 0.25
 
   num_samples = SAMPLE_RATE * duration
   samples = generate_sample_data(waveform, num_samples, frequency, amplitude)
   
-
   buffer = WaveFile::Buffer.new(samples, WaveFile::Format.new(:mono, :float, SAMPLE_RATE))
-  # Write the Buffer containing our samples to a monophonic Wave file
+ 
   WaveFile::Writer.new(OUTPUT_FILENAME, WaveFile::Format.new(:mono, :pcm_16, SAMPLE_RATE)) do |writer|
     writer.write(buffer)
   end
-  # Wrap the array of samples in a Buffer, so that it can be written to a Wave file
-  # by the WaveFile gem. Since we generated samples with values between -1.0 and 1.0,
-  # the sample format should be :float 
+
 end
 
 def generate_sample_data(waveform, num_samples, frequency, amplitude)
@@ -68,7 +63,7 @@ def generate_sample_data(waveform, num_samples, frequency, amplitude)
   
   samples = [].fill(0.0, 0, num_samples)
 
-  num_samples.times do |i|
+  num_samples.to_i.times do |i|
 
     if waveform == :sine
       samples[i] = Math::sin(position_in_period * TWO_PI) * amplitude
