@@ -5,7 +5,6 @@ require "wavefile"
 
 OUTPUT_FILENAME = "mynote.wav"
 SAMPLE_RATE = 44100
-# SECONDS_TO_GENERATE = 1
 TWO_PI = 2 * Math::PI
 RANDOM_GENERATOR = Random.new
 
@@ -62,18 +61,15 @@ def note
   # the sample format should be :float 
 end
 
-# The dark heart of NanoSynth, the part that actually generates the audio data
 def generate_sample_data(waveform, num_samples, frequency, amplitude)
   position_in_period = 0.0
   position_in_period_delta = frequency / SAMPLE_RATE
 
-  # Initialize an array of samples set to 0.0. Each sample will be replaced with
-  # an actual value below.
+  
   samples = [].fill(0.0, 0, num_samples)
 
   num_samples.times do |i|
-    # Add next sample to sample list. The sample value is determined by
-    # plugging position_in_period into the appropriate wave function.
+
     if waveform == :sine
       samples[i] = Math::sin(position_in_period * TWO_PI) * amplitude
     elsif waveform == :square
@@ -88,8 +84,6 @@ def generate_sample_data(waveform, num_samples, frequency, amplitude)
 
     position_in_period += position_in_period_delta
 
-    # Constrain the period between 0.0 and 1.0.
-    # That is, keep looping and re-looping over the same period.
     if position_in_period >= 1.0
       position_in_period -= 1.0
     end
