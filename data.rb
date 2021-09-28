@@ -27,4 +27,30 @@ module Notes
     def self.SAMPLE_RATE
         return 44100
     end
+
+    def self.get_note_num
+        puts 'how many notes are in your melody?'
+        note_num = gets.chomp.to_i
+        return note_num
+    end
+
+    def self.get_notes
+        frequency = nil
+
+        while notes[frequency] == nil
+          puts "What is the note?"
+          frequency = gets.chomp.to_sym
+          if notes[frequency] == nil
+            puts "invalid input"
+          end
+        end
+        return frequency
+    end
+
+    def self.get_note_durations
+        puts "How many seconds should it be played for?"
+        duration = gets.chomp.to_f
+        return duration
+    end
+
 end

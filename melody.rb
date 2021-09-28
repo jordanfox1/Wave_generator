@@ -7,33 +7,21 @@ require_relative 'data.rb'
 puts "What do you want to name your file?"
 OUTPUT_FILENAME = "./files/" + gets.chomp + '.wav'
 
-RANDOM_GENERATOR = Random.new
 
 def melody
   notes = Notes.notes
   
-  puts 'how many notes are in your melody?'
-  note_num = gets.chomp.to_i
+  note_num = Notes.get_note_num
 
-  
   samples = []
   count = 0
  
   while count <= note_num - 1
     waveform = :sine
+    
+    frequency = Notes.get_notes
 
-    frequency = nil
-    while notes[frequency] == nil
-      puts "What is the note?"
-      frequency = gets.chomp.to_sym
-
-      if notes[frequency] == nil
-        puts "invalid input"
-      end
-    end
-
-    puts "How many seconds should it be played for?"
-    duration = gets.chomp.to_f
+    duration = Notes.get_note_durations
 
     notes.each do |k, _v|
       if frequency == k
@@ -47,8 +35,6 @@ def melody
     begin
       voice = generate_sample_data(waveform, num_samples, frequency, amplitude)
       samples.push(voice)
-      
-
       count += 1
     rescue
       puts "there was an error"
@@ -58,7 +44,7 @@ def melody
 
   WaveFile::Writer.new(OUTPUT_FILENAME, WaveFile::Format.new(:mono, :pcm_16, Notes.SAMPLE_RATE)) do |writer|
     writer.write(buffer)
-  end    
+  end
   samples
 end
 
