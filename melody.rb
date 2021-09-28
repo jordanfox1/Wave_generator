@@ -1,7 +1,7 @@
 gem "wavefile", "=1.1.1"
 require "wavefile"
 require "tty-spinner"
-
+require 'rainbow'
 
 puts "What do you want to name your file?"
 OUTPUT_FILENAME = gets.chomp + '.wav'
