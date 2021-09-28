@@ -1,4 +1,4 @@
-gem "wavefile", "=1.1.1"
+
 require "wavefile"
 
 puts "What do you want to name your file?"

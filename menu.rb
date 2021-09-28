@@ -6,7 +6,7 @@ require_relative "help.rb"
 def menu
     spinner = TTY::Spinner.new("[:spinner] ...", format: :pulse_2)
 
-    puts Rainbow("Welcome to the wave generator!").blue 
+    puts Rainbow("Welcome to the wave generator!").blue
     prompt = TTY::Prompt.new
     inp = prompt.select("What would you like to generate?", %w(Note Chord Melody Help))
 
@@ -24,15 +24,15 @@ def menu
         melody
         spinner.stop("Your melody has been saved in the working directory")
     else
-        inp = prompt.select("What do you need help with?", %w(Note Chord Melody))
-        case inp
-            when "Note"
-                note_help
-            when "Chord"
-                chord_help
-            when "Melody"
-                melody_help
+        help = Help.new
+
+        help_promp = prompt.select("What do you need help with?", %w(Note Chord Melody_help Help))
+
+        if help_promp == "Melody_help"
+            help.melody_help
         end
+        
+        
     end
 end
 

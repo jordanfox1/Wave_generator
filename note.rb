@@ -1,5 +1,4 @@
 
-gem "wavefile", "=1.1.1"
 require "wavefile"
 require "tty-spinner"
 
