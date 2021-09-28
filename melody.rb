@@ -1,5 +1,7 @@
 gem "wavefile", "=1.1.1"
 require "wavefile"
+require "tty-spinner"
+
 
 puts "What do you want to name your file?"
 OUTPUT_FILENAME = gets.chomp + '.wav'
@@ -96,5 +98,3 @@ def generate_sample_data(waveform, num_samples, frequency, amplitude)
   end
   voice
 end
-
-melody

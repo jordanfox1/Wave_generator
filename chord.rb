@@ -84,7 +84,6 @@ def chord
   samples
 end
 
-
 def generate_sample_data(waveform, num_samples, frequency, amplitude)
   position_in_period = 0.0
   position_in_period_delta = frequency / SAMPLE_RATE
@@ -114,4 +113,3 @@ def generate_sample_data(waveform, num_samples, frequency, amplitude)
   end
   voice
 end
-

@@ -1,7 +1,9 @@
 
-
 gem "wavefile", "=1.1.1"
 require "wavefile"
+require "tty-spinner"
+
+
 
 OUTPUT_FILENAME = "mynote.wav"
 SAMPLE_RATE = 44100
@@ -9,6 +11,7 @@ TWO_PI = 2 * Math::PI
 RANDOM_GENERATOR = Random.new
 
 def note
+  spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :pulse_2)
   notes = { c: 261.63,
     csharp: 277.18,
     dflat: 277.18,
@@ -52,14 +55,13 @@ def note
  
   WaveFile::Writer.new(OUTPUT_FILENAME, WaveFile::Format.new(:mono, :pcm_16, SAMPLE_RATE)) do |writer|
     writer.write(buffer)
+    spinner.auto_spin
   end
-
 end
 
 def generate_sample_data(waveform, num_samples, frequency, amplitude)
   position_in_period = 0.0
   position_in_period_delta = frequency / SAMPLE_RATE
-
   
   samples = [].fill(0.0, 0, num_samples)
 
@@ -83,9 +85,5 @@ def generate_sample_data(waveform, num_samples, frequency, amplitude)
       position_in_period -= 1.0
     end
   end
-
   samples
-
 end
-
-note
