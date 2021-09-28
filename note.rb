@@ -1,8 +1,5 @@
 
 require "wavefile"
-require "tty-spinner"
-
-
 
 OUTPUT_FILENAME = "mynote.wav"
 SAMPLE_RATE = 44100
@@ -10,7 +7,7 @@ TWO_PI = 2 * Math::PI
 RANDOM_GENERATOR = Random.new
 
 def note
-  spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :pulse_2)
+
   notes = { c: 261.63,
     csharp: 277.18,
     dflat: 277.18,
@@ -30,8 +27,8 @@ def note
     b: 493.88,
   }
   
-  puts 'what is your waveform?'
-  waveform = gets.chomp.to_sym
+  # puts 'what is your waveform?'
+  # waveform = gets.chomp.to_sym
 
   puts 'what is your note?'
   frequency = gets.chomp.to_sym
@@ -47,42 +44,33 @@ def note
 
   amplitude = 0.25
 
+  offset = TWO_PI * frequency / SAMPLE_RATE
+  angle = 0.0
+
   num_samples = SAMPLE_RATE * duration
-  samples = generate_sample_data(waveform, num_samples, frequency, amplitude)
+  samples = sine(angle, offset, amplitude, num_samples)
   
   buffer = WaveFile::Buffer.new(samples, WaveFile::Format.new(:mono, :float, SAMPLE_RATE))
  
   WaveFile::Writer.new(OUTPUT_FILENAME, WaveFile::Format.new(:mono, :pcm_16, SAMPLE_RATE)) do |writer|
     writer.write(buffer)
-    spinner.auto_spin
   end
 end
 
-def generate_sample_data(waveform, num_samples, frequency, amplitude)
-  position_in_period = 0.0
-  position_in_period_delta = frequency / SAMPLE_RATE
-  
-  samples = [].fill(0.0, 0, num_samples)
-
-  num_samples.to_i.times do |i|
-
-    if waveform == :sine
-      samples[i] = Math::sin(position_in_period * TWO_PI) * amplitude
-    elsif waveform == :square
-      samples[i] = (position_in_period >= 0.5) ? amplitude : -amplitude
-    elsif waveform == :saw
-      samples[i] = ((position_in_period * 2.0) - 1.0) * amplitude
-    elsif waveform == :triangle
-      samples[i] = amplitude - (((position_in_period * 2.0) - 1.0) * amplitude * 2.0).abs
-    elsif waveform == :noise
-      samples[i] = RANDOM_GENERATOR.rand(-amplitude..amplitude)
-    end
-
-    position_in_period += position_in_period_delta
-
-    if position_in_period >= 1.0
-      position_in_period -= 1.0
-    end
+# generate the array of samples ascociated with the given parameters
+def sine(angle, offset, amplitude, num_samples)
+  samples = []
+  # this will ensure the correct array size, num_samples refers to the length of the samples array
+  num_samples.to_i.times do
+    # this will create a single sample of a sinewave at a given point in time
+    # which is determined by the angle and offset values
+    sample = amplitude * Math.sin(angle)
+    # updating the angle so that waveform is represented of an interval of time
+    angle += offset
+    # populating the samples[] with the correct sample
+    samples.push(sample)
   end
   samples
 end
+
+note

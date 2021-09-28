@@ -14,15 +14,15 @@ def menu
     when "Note"
         require_relative "note.rb"
         note
-        spinner.stop("Your note has been saved in the working directory")
+        spinner.stop("Check the files folder to find your note!")
     when "Chord"
         require_relative "chord.rb"
         chord
-        spinner.stop("Your chord has been saved in the working directory")
+        spinner.stop("Check the files folder to find your chord!")
     when "Melody"
         require_relative "melody.rb"
         melody
-        spinner.stop("Your melody has been saved in the working directory")
+        spinner.stop("Check the files folder to find your melody!")
     else
         help = Help.new
 
@@ -31,8 +31,7 @@ def menu
         if help_promp == "Melody_help"
             help.melody_help
         end
-        
-        
+                
     end
 end
 
