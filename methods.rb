@@ -1,8 +1,8 @@
 require_relative 'data.rb'
 require "wavefile"
 
-def create_melody_samples(waveform, num_samples, frequency, amplitude, samples)
-    voice = generate_sample_data(waveform, num_samples, frequency, amplitude)
+def create_melody_samples(num_samples, amplitude, samples, angle, offset)
+    voice = sine(angle, offset, amplitude, num_samples)
     samples.push(voice)
     return samples
 end
