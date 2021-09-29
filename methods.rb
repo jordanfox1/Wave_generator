@@ -7,7 +7,7 @@ def create_melody_samples(num_samples, amplitude, samples, angle, offset)
     return samples
 end
 
-def export_melody(samples)
+def export_samples(samples)
     buffer = WaveFile::Buffer.new(samples, WaveFile::Format.new(:mono, :float, Notes.SAMPLE_RATE))
 
     WaveFile::Writer.new(OUTPUT_FILENAME, WaveFile::Format.new(:mono, :pcm_16, Notes.SAMPLE_RATE)) do |writer|
@@ -23,9 +23,12 @@ def sine(angle, offset, amplitude, num_samples)
     # this will create a single sample of a sinewave at a given point in time
     # which is determined by the angle and offset values
     sample = amplitude * Math.sin(angle)
-    # updating the angle so that waveform is represented of an interval of time
+    # updating the angle so that waveform is represented over an interval of time
     angle += offset
-    # populating the samples[] with the correct sample
+      if angle >= 1.0
+        angle -= 1.0
+      end
+      # populating the samples[] with the correct sample
     samples.push(sample)
   end
   samples

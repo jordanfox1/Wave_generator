@@ -61,16 +61,3 @@ module Notes
       end  
     end
 end
-
-# class Foo
-#   def method
-#   end
-
-#   def self.method_two
-#   end
-# end
-
-# Foo.method_two
-
-# thing = new Foo()
-# thing.method

@@ -1,10 +1,10 @@
-require "wavefile"
-require "tty-spinner"
+require 'wavefile'
+require 'tty-spinner'
 require 'rainbow'
-require_relative 'data.rb'
-require_relative 'methods.rb'
+require_relative 'data'
+require_relative 'methods'
 
-puts "What do you want to name your file?"
+puts Rainbow("What do you want to name your file?").blue
 OUTPUT_FILENAME = "./files/" + gets.chomp + '.wav'
 
 def melody
@@ -14,7 +14,6 @@ def melody
   count = 0
 
   while count <= note_num - 1
-    # waveform = :sine
     frequency = Notes.get_notes
     duration = get_note_durations
     amplitude = 0.25
@@ -27,8 +26,8 @@ def melody
       create_melody_samples(num_samples, amplitude, samples, angle, offset)
       count += 1
     rescue
-      puts "there was an error"
+      puts Rainbow("Please input a single valid note letter, then input the desired duration for that note").yellow
     end
   end
-  export_melody(samples.flatten)
+  export_samples(samples.flatten)
 end
