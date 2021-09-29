@@ -24,20 +24,20 @@ def chord
     case count
     when 0
       frequency = Notes.get_notes
-      voice = generate_sample_data(num_samples, frequency, amplitude)
+      voice = generate_sinewave(num_samples, frequency, amplitude)
       voice_1 = voice
     when 1
       frequency = Notes.get_notes
-      voice = generate_sample_data(num_samples, frequency, amplitude)
+      voice = generate_sinewave(num_samples, frequency, amplitude)
       voice_2 = voice
     when 2
       frequency = Notes.get_notes
-      voice = generate_sample_data(num_samples, frequency, amplitude)
+      voice = generate_sinewave(num_samples, frequency, amplitude)
       voice_3 = voice
     when 3
       frequency = Notes.get_notes
       frequency *= 2
-      voice = generate_sample_data(num_samples, frequency, amplitude)
+      voice = generate_sinewave(num_samples, frequency, amplitude)
       voice_4 = voice
     end
 
@@ -50,17 +50,4 @@ def chord
   samples
 end
 
-def generate_sample_data(num_samples, frequency, amplitude)
-  angle = 0.0
-  offset = frequency / Notes.SAMPLE_RATE
-  voice = [].fill(0.0, 0, num_samples)
 
-  num_samples.times do |i|
-    voice[i] = Math.sin(angle * Notes::TWO_PI) * amplitude
-    angle += offset
-    if angle >= 1.0
-      offset -= 1.0
-    end
-  end
-  voice
-end

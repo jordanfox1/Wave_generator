@@ -1,6 +1,6 @@
 module Notes
     TWO_PI = 2 * Math::PI
-    
+
     def self.notes
       return { 
           c: 261.63,
@@ -29,7 +29,7 @@ module Notes
 
     module UserInterface
       def get_note_num
-        puts 'how many notes are in your melody?'
+        puts Rainbow('how many notes are in your melody?').blue
         note_num = gets.chomp.to_i
         return note_num
       end
@@ -55,9 +55,9 @@ module Notes
       end
 
       def get_note_durations
-          puts "How many seconds should it be played for?"
+          puts Rainbow("How many seconds should it be played for?").blue
           duration = gets.chomp.to_f
           return duration
-      end  
+      end
     end
 end
