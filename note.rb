@@ -1,60 +1,23 @@
+require 'wavefile'
+require 'tty-spinner'
+require 'rainbow'
+require_relative 'data'
+require_relative 'methods'
 
-require "wavefile"
-
-OUTPUT_FILENAME = "mynote.wav"
-SAMPLE_RATE = 44100
-TWO_PI = 2 * Math::PI
-RANDOM_GENERATOR = Random.new
+puts Rainbow("What do you want to name your file?").blue
+OUTPUT_FILENAME = "./files/" + gets.chomp + '.wav'
 
 def note
-
-  notes = { c: 261.63,
-    csharp: 277.18,
-    dflat: 277.18,
-    d: 293.66,
-    dsharp: 311.13,
-    eflat: 311.13,
-    e: 329.63,
-    f: 349.23,
-    fsharp: 369.99,
-    gflat: 369.99,
-    g: 392.00,
-    gsharp: 415.30,
-    aflat: 415.30,
-    a: 440.00,
-    asharp: 466.16,
-    bflat: 466.16,
-    b: 493.88,
-  }
-  
-  # puts 'what is your waveform?'
-  # waveform = gets.chomp.to_sym
-
-  puts 'what is your note?'
-  frequency = gets.chomp.to_sym
-
-  notes.each do |k, _v|
-    if frequency == k
-      frequency = notes[frequency]
-    end
-  end
-
-  puts 'how many seconds should your note play for?'
-  duration = gets.chomp.to_f
-
+  include Notes::UserInterface
+  # note_num = 1
+  frequency = Notes.get_notes
+  duration = get_note_durations
   amplitude = 0.25
-
-  offset = TWO_PI * frequency / SAMPLE_RATE
+  offset = Notes::TWO_PI * frequency / Notes.SAMPLE_RATE
   angle = 0.0
-
-  num_samples = SAMPLE_RATE * duration
+  num_samples = Notes.SAMPLE_RATE * duration
   samples = sine(angle, offset, amplitude, num_samples)
-  
-  buffer = WaveFile::Buffer.new(samples, WaveFile::Format.new(:mono, :float, SAMPLE_RATE))
- 
-  WaveFile::Writer.new(OUTPUT_FILENAME, WaveFile::Format.new(:mono, :pcm_16, SAMPLE_RATE)) do |writer|
-    writer.write(buffer)
-  end
+  export_samples(samples)
 end
 
 # generate the array of samples ascociated with the given parameters
@@ -72,5 +35,3 @@ def sine(angle, offset, amplitude, num_samples)
   end
   samples
 end
-
-note

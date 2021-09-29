@@ -22,7 +22,7 @@ def sine(angle, offset, amplitude, num_samples)
   num_samples.to_i.times do
     # this will create a single sample of a sinewave at a given point in time
     # which is determined by the angle and offset values
-    sample = amplitude * Math.sin(angle)
+    sample = amplitude * Math.sin(angle * TWO_PI)
     # updating the angle so that waveform is represented over an interval of time
     angle += offset
       if angle >= 1.0
@@ -56,10 +56,22 @@ def generate_sample_data(waveform, num_samples, frequency, amplitude)
   
       position_in_period += position_in_period_delta
   
-  
       if position_in_period >= 1.0
         position_in_period -= 1.0
       end
     end
     voice
 end
+
+# def create_chord(samples)
+#   joined_arr = []
+#   num_cols = samples[0].length
+#   num_arrays = samples.length
+#   num_cols.times do |i|
+#     current_sum = 0
+#     working_array = samples[i]
+#     samples.each { |array| current_sum += array[i] }
+#     joined_arr << current_sum / num_arrays.to_f
+#   end
+#   return joined_arr
+# end
