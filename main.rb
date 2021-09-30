@@ -38,7 +38,7 @@ def menu
         elsif help_prompt == "Chord_help"
             help.chord_help
         elsif help_prompt == "Bassline_help"
-            help.chord_help
+            help.bassline_help
         end
     end
 end
