@@ -3,12 +3,12 @@ require 'tty-spinner'
 require 'rainbow'
 require_relative 'data'
 require_relative 'methods'
+include Notes::UserInterface
 
 puts Rainbow("What do you want to name your file?").blue
 OUTPUT_FILENAME = "./files/" + STDIN.gets.chomp + '.wav'
 
 def note
-  include Notes::UserInterface
   frequency = Notes.get_notes
   duration = get_note_durations
   amplitude = 0.25
