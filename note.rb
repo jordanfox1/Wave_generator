@@ -5,7 +5,7 @@ require_relative 'data'
 require_relative 'methods'
 
 puts Rainbow("What do you want to name your file?").blue
-OUTPUT_FILENAME = "./files/" + gets.chomp + '.wav'
+OUTPUT_FILENAME = "./files/" + STDIN.gets.chomp + '.wav'
 
 def note
   include Notes::UserInterface

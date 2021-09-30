@@ -4,7 +4,7 @@ require_relative 'data'
 require_relative 'methods'
 
 puts Rainbow("What do you want to name your file?").blue
-OUTPUT_FILENAME = "./files/" + gets.chomp + '.wav'
+OUTPUT_FILENAME = "./files/" + STDIN.gets.chomp + '.wav'
 
 def chord
   include Notes::UserInterface
@@ -15,7 +15,7 @@ def chord
 
   while duration.nil?
     puts Rainbow("For how many seconds should your chord be played?").blue
-    duration = gets.chomp.to_i
+    duration = STDIN.gets.chomp.to_i
     if duration < 1 || duration > 40 || !duration.is_a?(Integer)
       puts Rainbow("Please enter a number of seconds greater than 1 and less than 150!").yellow
       duration = nil
