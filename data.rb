@@ -74,3 +74,20 @@ module Notes
       end
     end
 end
+
+def distortion
+  amplitude = nil
+  while amplitude == nil
+    puts Rainbow("Do you want to add distortion? type 'y' or 'yes' or 'n' or 'no' for no.").blue
+    dist = STDIN.gets.chomp
+
+    case dist
+    when 'y', 'yes'
+      amplitude = 1.15
+    when 'n', 'no'
+      amplitude = 0.25 
+    else puts Rainbow("Invalid input! type 'y' or 'yes' or 'n' or 'no' for no.").yellow
+    end
+  end
+  amplitude
+end
