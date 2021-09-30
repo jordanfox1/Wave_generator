@@ -61,9 +61,16 @@ module Notes
       end
 
       def get_note_durations
+        duration = nil
+        while duration == nil
           puts Rainbow("How many seconds should it be played for?").blue
           duration = gets.chomp.to_f
-          return duration
+          if duration > 50 || duration == 0
+          puts Rainbow("Please enter a length of seconds for your note to play.\n-This number can be less than one, but must be greater than zero!").yellow
+          duration = nil
+          end
+        end
+        return duration
       end
     end
 end
