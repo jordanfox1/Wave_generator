@@ -5,5 +5,5 @@ require_relative "wave_generator/main"
 
 module WaveGenerator
   class Error < StandardError; end
-  menu
+  
 end

@@ -4,4 +4,5 @@
 require "bundler/setup"
 require "wave_generator"
 
-ruby wave_generator.rb
+require 'irb'
+IRB.start(_FILE_)
