@@ -14,24 +14,27 @@ def menu
     when "Note"
         require_relative "note.rb"
         note
-        spinner.stop("Check the files folder to find your note!")
+        spinner.stop Rainbow("Check the files folder to find your note!").green
     when "Chord"
         require_relative "chord.rb"
         chord
-        spinner.stop("Check the files folder to find your chord!")
+        spinner.stop Rainbow("Check the files folder to find your chord!").green
     when "Melody"
         require_relative "melody.rb"
         melody
-        spinner.stop("Check the files folder to find your melody!")
+        spinner.stop Rainbow("Check the files folder to find your melody!").green
     else
         help = Help.new
 
-        help_promp = prompt.select("What do you need help with?", %w(Note Chord Melody_help Help))
+        help_prompt = prompt.select("What do you need help with?", %w(Note_help Chord_help Melody_help))
 
-        if help_promp == "Melody_help"
+        if help_prompt == "Melody_help"
             help.melody_help
+        elsif help_prompt == "Note_help"
+            help.note_help
+        elsif help_prompt == "Chord_help"
+            help.chord_help
         end
-                
     end
 end
 

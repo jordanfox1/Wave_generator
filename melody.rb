@@ -1,5 +1,4 @@
 require 'wavefile'
-require 'tty-spinner'
 require 'rainbow'
 require_relative 'data'
 require_relative 'methods'

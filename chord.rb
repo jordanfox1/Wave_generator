@@ -1,5 +1,4 @@
 require 'wavefile'
-require 'tty-spinner'
 require 'rainbow'
 require_relative 'data'
 require_relative 'methods'
@@ -12,9 +11,16 @@ def chord
   note_num = 4
   samples = []
   count = 0
+  duration = nil
 
-  puts "How long should your chord be played?"
-  duration = gets.chomp.to_i
+  while duration.nil?
+    puts Rainbow("For how many seconds should your chord be played?").blue
+    duration = gets.chomp.to_i
+    if duration < 1 || duration > 40 || !duration.is_a?(Integer)
+      puts Rainbow("Please enter a number of seconds greater than 1 and less than 150!").yellow
+      duration = nil
+    end
+  end
 
   while count <= note_num - 1
     frequency *= 2 if count == 3
@@ -49,5 +55,3 @@ def chord
   end
   samples
 end
-
-
