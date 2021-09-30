@@ -27,4 +27,5 @@ def melody
     end
   end
   export_samples(samples.flatten)
+  system("clear")
 end

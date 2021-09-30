@@ -11,11 +11,10 @@ def bassline
   note_num = get_note_num
   count = 0
   samples = []
+  amplitude = get_distortion
   while count <= note_num - 1
     frequency = (Notes.get_notes / 4)
     duration = get_note_durations
-    amplitude = distortion
-
     num_samples = Notes.SAMPLE_RATE * duration
 
     begin
@@ -27,6 +26,5 @@ def bassline
     end
   end
   export_samples(samples.flatten)
+  system("clear")
 end
-
-bassline

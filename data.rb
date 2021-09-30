@@ -31,7 +31,7 @@ module Notes
       def get_note_num
         note_num = nil
         while note_num == nil
-          puts Rainbow('How many notes are in your melody?').blue
+          puts Rainbow('Enter the number of notes').blue
           note_num = STDIN.gets.chomp.to_i
           if note_num < 1 || note_num > 50 || !note_num.is_a?(Integer)
             puts Rainbow(' Please enter a number of notes greater than zero and less than 50!').yellow
@@ -75,7 +75,7 @@ module Notes
     end
 end
 
-def distortion
+def get_distortion
   amplitude = nil
   while amplitude == nil
     puts Rainbow("Do you want to add distortion? type 'y' or 'yes' or 'n' or 'no' for no.").blue
