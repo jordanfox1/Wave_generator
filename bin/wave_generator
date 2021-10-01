@@ -1,2 +1,3 @@
-#!/usr/bin/bash
-# ruby lib/wave_generator.rb
+#!/usr/bin/env ruby
+require 'wave_generator'
+ruby lib/wave_generator.rb

@@ -6,4 +6,3 @@ require 'wave_generator'
 
 require 'irb'
 IRB.start(_FILE_)
-ruby 'lib/wave_generator.rb'
