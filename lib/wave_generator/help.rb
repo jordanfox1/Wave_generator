@@ -1,4 +1,5 @@
 require "rainbow"
+
 # This page contains the various help messages which can be accessed by the user
 class Help
     def note_help

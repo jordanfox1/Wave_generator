@@ -7,6 +7,7 @@ include Notes::UserInterface
 puts Rainbow("What do you want to name your file?").blue
 OUTPUT_FILENAME = "../../files/" + STDIN.gets.chomp + '.wav'
 
+# This is the method which accesses additional methods to create a chord
 def chord
   note_num = 4
   samples = []

@@ -1,6 +1,7 @@
 require_relative 'data.rb'
 require "wavefile"
 
+# This page contains the heavily re-used methods which provide the user with an actual sound file
 def create_melody_samples(num_samples, frequency, amplitude)
     voice = generate_sinewave(num_samples, frequency, amplitude)
     samples.push(voice)
