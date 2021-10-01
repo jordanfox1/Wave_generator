@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-
-require "bundler/setup"
-require 'wave_generator'
-
-require 'irb'
-IRB.start(_FILE_)

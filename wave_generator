@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
-require 'wave_generator'
-# ruby lib/wave_generator.rb
+
+require_relative 'application/main'
+
+# ruby main.rb
