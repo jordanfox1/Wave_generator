@@ -65,7 +65,7 @@ when 'bassline'
     bassline
     spinner.stop Rainbow("Check the files folder to find your bassline!").green
 when 'help'
-    puts Rainbow("To use this application's menu, please type 'ruby wave_generator.rb'.
+    puts Rainbow("To use this application's menu, please type 'ruby wave_generator'.
 If you are familiar with the application, type the item you want to generate as a command line argument.
 To see help for individual app functions, see the 'help' section in the menu.").green
 end
