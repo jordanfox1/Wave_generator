@@ -5,7 +5,7 @@ require_relative 'methods'
 include Notes::UserInterface
 
 puts Rainbow("What do you want to name your file?").blue
-OUTPUT_FILENAME = "./files/" + STDIN.gets.chomp + '.wav'
+OUTPUT_FILENAME = "../../files/" + STDIN.gets.chomp + '.wav'
 
 def chord
   note_num = 4
