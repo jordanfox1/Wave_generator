@@ -1,4 +1,5 @@
 module Notes
+  # This page contains the reusable methods and data used by the functional parts of the application
     TWO_PI = 2 * Math::PI
 
     def self.notes

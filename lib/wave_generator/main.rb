@@ -4,6 +4,7 @@ require "rainbow"
 require_relative "help"
 spinner = TTY::Spinner.new("[:spinner] ...", format: :pulse_2)
 
+# This method conatains the menu of the application
 def menu
     spinner = TTY::Spinner.new("[:spinner] ...", format: :pulse_2)
     puts Rainbow("Welcome to the wave generator!").blue
@@ -43,6 +44,7 @@ def menu
     end
 end
 
+# This statement just adds the option of accessing the functions with command line args
 case ARGV[0]
 when 'menu', nil
     menu

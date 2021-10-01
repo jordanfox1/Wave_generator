@@ -1,5 +1,5 @@
 require "rainbow"
-
+# This page contains the various help messages which can be accessed by the user
 class Help
     def note_help
         puts Rainbow("-Wave generator creates a .wav file of a user-determined note, chord, melody or bassline.\n-For a note, you will be prompted to enter a filename, note and duration.\n-The note you have chosen will be saved in the working directory, and you can then open and play it.").green
