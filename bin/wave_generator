@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+ruby lib/wave_generator.rb
