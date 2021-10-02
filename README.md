@@ -2,6 +2,11 @@
 
 Welcome to my first terminal application, the wave_generator. The Kanban board which assisted this application can be found here: https://trello.com/b/z7IDcCcU/terminal
 
+The an outline of the application's control flow is represented by a flow-chart which can be viewed here:
+
+https://lucid.app/lucidchart/b5c4a8e2-701d-41ff-9833-6f1107bb4737/edit?viewport_loc=-31%2C176%2C2265%2C1140%2C0_0&invitationId=inv_6bb795a9-44a4-407b-a714-0116450094d0
+
+
 # Software development plan
 
 The idea of this application is to be a simple introduction to sound design and synthesis. It provides users with a very simple way to create and listen to their own music. By being limited in its depth of functionality, it allows for a straight-forward experience which happens very quickly, and gives immediate output to the user.
@@ -27,7 +32,7 @@ The chord function uses the same procedure, except to a greater extent. The user
 
 ## Generate a melody
 
-The melody function, again follows the same steps, except the user may enter up to 50 notes each with a duration of up to 50 seconds. The notes are converted into their corresponding arrays and the arrays are appended in order. This will result in the individual voices being played one after the other, which is also technically a melody.
+The melody function, again follows the same steps, except the user may enter up to 50 notes each with a duration of up to 50 seconds. The notes are converted into their corresponding arrays and the arrays are appended in order. This will result in the individual voices being played one after the other, which is also technically considered a melody.
 
 ## Generate a bassline
 
@@ -37,26 +42,45 @@ All functions handle all types of input errors I could think of when creating th
 
 # User Interaction outline
 
-When the user runs the application, they are brought to a menu which they can select which feature they would like to use, or select ‘help’ which contains a more detailed explanation of the usage of each feature. The user can also choose to run a specific feature by given that feature’s name as a command line argument, for example, $ ruby wave_generator chord
-Brings the user directly to the chord feature and bypasses the menu.
+When the user runs the application, they are brought to a menu which they can select which feature they would like to use, or select ‘help’ which contains a more detailed explanation of the usage of each feature. The user can also choose to run a specific feature by given that feature’s name as a command line argument, for example, 
+>$ ruby wave_generator chord
+
+brings the user directly to the chord feature and bypasses the menu.
 
 Each feature handles input errors as follows: the user is prompted for input, the user gives incorrect input, the user is shown a message indicating correct usage and is prompted for input again. This cycle repeats until the user gives correct input.
 
-# Installation, usage and dependencies
+# Installation, and dependencies
 
 This application is written in ruby and requires it to run: https://rubyinstaller.org/
+
 This application uses the following gems:
 - ‘tty-promt’ https://rubygems.org/gems/tty-prompt/versions/0.23.1
 - ‘wavefile’ https://rubygems.org/gems/wavefile/versions/1.1.1
 - ‘rainbow’ https://rubygems.org/gems/rainbow
 - ‘tty-spinner’ https://rubygems.org/gems/tty-spinner
 
-These gems will need to be installed in order for this application to run correctly. The user must also download a copy of the application from it’s git repository: https://github.com/jordanfox1/Wave_generator change into its working directory and run ruby wave_generator
+These gems will need to be installed in order for this application to run correctly. The user must also download a copy of the application from it’s git repository:
+https://github.com/jordanfox1/Wave_generator
+change into its working directory and run ruby wave_generator
+
+# Usage
+
+In order to use this application, from the applcation's working directory, run the command:
+>$ bash wave_generator.sh
+
+This will run a script which installs bundler, and then installs all of the dependencies, then runs the application. After that you can run the application with the command:
+>$ ruby wave_generator
+
 
 # Tests
 
 The tests included in this application are written with test-unit and test the following methods which are essential:
-Get_note_durations - this tests that method runs correctly when the user gives an input of 30, (which indicates that it runs correctly when given any valid input) the test fails if the method returns the incorrect value.
-Get_note_num - this tests the feature that determines the number of notes given by the user. It does this in a similar way as above, If the method returns a number other than that specified in the test, it will not pass
-Get_notes_test - this tests whether a note will be converted into the correct frequency, and uses a test input of ‘a’ and 440.0 hz which is the frequency value of an ‘a’ note.
+* Get_note_durations_test - this tests that method runs correctly when the user gives an input of 30, (which indicates that it runs correctly when given any valid input) the test fails if the method returns the incorrect value.
+* Get_note_num_test - this tests the feature that determines the number of notes given by the user. It does this in a similar way as above, If the method returns a number other than that specified in the test, it will not pass
+* Get_notes_test - this tests whether a note will be converted into the correct frequency, and uses a test input of ‘a’ and 440.0 hz which is the frequency value of an ‘a’ note.
 
+# References
+
+http://topherlee.com/software/pcm-tut-sine.html
+
+https://pages.mtu.edu/~suits/notefreqs.html
