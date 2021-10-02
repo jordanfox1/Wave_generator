@@ -69,7 +69,17 @@ In order to use this application, from the applcation's working directory, run t
 >$ bash wave_generator.sh
 
 This will run a script which installs bundler, and then installs all of the dependencies, then runs the application. After that you can run the application with the command:
->$ ruby wave_generator
+>$ ruby wave_generator.rb
+
+or, alternitavely, install the dependencies manually and the above command or the following:
+
+> ruby application/main.rb
+
+This application's gem dependency 'tty-prompt' is known to have issues when used on windows systems. I encountered this issue when testing the app also. If the tty-prompt menu is not working, you can bypass it completely by passing the feature you wish to access as a command line argument E.G
+
+> ruby application/main.rb chord
+
+to create a chord.
 
 
 # Tests
